@@ -18,7 +18,7 @@
       <b-navbar-brand to="/">MEEPRO</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
-          <template v-if="$route.path !== '/'">
+          <template :placeholder="isLogin" v-if="$route.path !== '/'">
             <b-nav-item-dropdown right v-if="isLogin">
               <template slot="button-content">&#x1F468;</template>
               <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
