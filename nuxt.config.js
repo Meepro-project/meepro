@@ -36,7 +36,20 @@ module.exports = {
     }
   },
   modules: [
-    'bootstrap-vue/nuxt',
+    ['bootstrap-vue/nuxt', {css: false}],
+    ['nuxt-fontawesome', {
+      component: 'fa',
+      imports: [
+        {
+          set: '@fortawesome/free-brands-svg-icons',
+          icons: ['fab']
+        },
+      ]
+    }],
+  ],
+  css: [
+    'bootstrap/scss/bootstrap.scss',
+    'bootstrap-social/bootstrap-social.css',
   ],
 }
 
