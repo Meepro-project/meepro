@@ -1,11 +1,21 @@
 <template>
-  <section class="container">
-    <facebook-login-button to="/profile" />
-  </section>
+  <div>
+    <section id="pane-hero">
+      <div class="pane-hero-text">
+        <h1>MEET PROFESSIONAL</h1>
+        <p>
+          Meeproは話してみたい職業の人と会える、<br>
+          完全無料でオープンソースの<br>
+          出会い系ではないマッチングサービスです。
+        </p>
+        <facebook-login-button to="/profile" />
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-import FacebookLoginButton from '~/components/FacebookLoginButton.vue'
+import FacebookLoginButton from '~/components/FacebookLoginButton.vue';
 
 export default {
   components: {
@@ -14,8 +24,15 @@ export default {
 }
 </script>
 
-<style scoped>
-.container {
+<style scoped lang="scss">
+#pane-hero {
+  & .pane-hero-text {
+    width: 50%;
+  }
+
+  & h1 {
+    color: #33f;
+  }
 }
 </style>
 
