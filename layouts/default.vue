@@ -15,38 +15,70 @@
 
     <b-navbar id="main-nav" toggleable type="light" variant="light">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand href="#">MEEPRO</b-navbar-brand>
+      <b-navbar-brand to="/">MEEPRO</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
           <template v-if="$route.path !== '/'">
-            <b-nav-item v-if="true">
+            <b-nav-item-dropdown right v-if="isLogin">
+              <template slot="button-content">&#x1F468;</template>
+              <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
+              <b-dropdown-item @click="signOut">ログアウト</b-dropdown-item>
+            </b-nav-item-dropdown>
+            <b-nav-item v-else>
               <facebook-login-button/>
             </b-nav-item>
-            <b-nav-item-dropdown right v-else>
-              <template slot="button-content">&#x1F468;</template>
-              <b-dropdown-item href="#">Hoge</b-dropdown-item>
-            </b-nav-item-dropdown>
           </template>
         </b-navbar-nav>
 
       </b-collapse>
     </b-navbar>
-    <div class="container">
-      <nuxt/>
+
+    <div class="body">
+      <div class="container">
+        <nuxt/>
+      </div>
     </div>
+
+    <footer>
+      <div class="footer-brand">
+        MEEPRO
+      </div>
+      <div class="footer-column">
+        <div class="footer-column-title">ABOUT</div>
+        <ul>
+          <li>hoge</li>
+          <li>fuga</li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <div class="footer-column-title">RESOURCES</div>
+        <ul>
+          <li><s>Twitter</s></li>
+        </ul>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
+import firebase from '~/utils/firebase.js';
+import {mixin as firebaseMixin} from '~/utils/firebase.js';
+
 import FacebookLoginButton from '~/components/FacebookLoginButton.vue'
 
 export default {
+  mixins: [firebaseMixin],
   components: {
     FacebookLoginButton,
   },
   methods: {
     setLang(lang) {
       this.$store.commit('setLang', lang);
+    },
+    async signOut() {
+      await firebase.auth().signOut();
+      this.$store.commit('authStatusChange');
+      this.$router.push('/');
     },
   },
   computed: {
@@ -76,12 +108,41 @@ html {
 
 </style>
 
-<style scoped>
+<style scoped lang="scss">
+.body {
+  background-color: #cfc;
+};
+
 .container {
   width: 1600px;
+  padding: 30px;
+}
+
+footer {
+  padding: 50px 200px;
+
+  background-color: #080;
+
+  color: #ccc;
+  display: flex;
+  flex-direction: row;
+
+  & .footer-brand {
+    color: #fff;
+  }
+
+  & .footer-column {
+    padding: 10px 50px;
+    width: 200px;
+
+    & ul {
+      list-style-type: none;
+    }
+  }
 }
 
 #main-nav {
+  height: 100px;
   padding-left: 200px;
   padding-right: 200px;
 }

@@ -1,6 +1,17 @@
+import 'vuex';
 import firebase from 'firebase/app';
+import 'firebase/auth';
 
 export default firebase;
+
+export const mixin = {
+  computed: {
+    isLogin() {
+      console.log(this.$store.state.user);
+      return this.$store.state.user !== null;
+    },
+  },
+};
 
 if(firebase.apps.length === 0) {
   firebase.initializeApp({
