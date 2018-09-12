@@ -23,7 +23,7 @@ export default {
       const provider = new firebase.auth.FacebookAuthProvider();
 
       firebase.auth().signInWithPopup(provider).then( async _ => {
-        await this.$store.dispatch('user/UPDATE_USER');
+        await this.$store.dispatch('CHANGE_USER');
         if(this.to) {
           this.$router.push(this.to);
         }

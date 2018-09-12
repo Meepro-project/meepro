@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <b-form @submit.prevent="onSubmit">
+    <b-form @keyup.enter="onSubmit" @submit.prevent="onSubmit">
       <b-form-group label="名前" for="name" horizontal>
         <b-form-input id="name" type="text" :value="name" plaintext readonly></b-form-input>
       </b-form-group>
@@ -13,13 +13,9 @@
 </template>
 
 <script>
-import firebase from '~/utils/firebase.js';
-import 'firebase/firestore';
+import {mapState} from 'vuex';
 
-let db = firebase.firestore()
-db.settings({
-  timestampsInSnapshots: true
-});
+import firebase from '~/utils/firebase.js';
 
 export default {
   middleware: 'authenticated',
@@ -28,14 +24,21 @@ export default {
       occupation: '',
     };
   },
+  async asyncData({store}) {
+    await store.dispatch('user/FETCH_PROFILE');
+    return {
+      occupation: store.state.user.occupation,
+    };
+  },
   computed: {
-    name() {
-      return this.$store.state.user.displayName;
-    },
+    ...mapState('user', {
+      name: state => state.displayName,
+    })
   },
   methods: {
     onSubmit() {
-      db.collection('users').doc(this.$store.state.user.uid).set({
+      this.$store.dispatch('user/UPDATE_PROFILE', {
+        name: this.name,
         occupation: this.occupation,
       });
     },

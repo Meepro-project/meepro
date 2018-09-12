@@ -14,11 +14,17 @@ export const mutations = {
   },
 };
 
+export const actions = {
+  async CHANGE_USER({dispatch}) {
+    await dispatch('user/CHANGE_USER');
+  },
+};
+
 export const plugins = [
   store => {
     console.log(store);
     auth.onIdTokenChanged( u => {
-      store.commit('user/updateAuth', u);
+      store.commit('user/setAuth', u);
     });
   },
 ];
