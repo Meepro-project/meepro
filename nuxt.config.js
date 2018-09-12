@@ -35,6 +35,9 @@ module.exports = {
       }
     }
   },
+  env: {
+    ...Object.assign({}, ...['FIREBASE_API_KEY', 'FIREBASE_AUTH_DOMAIN', 'FIREBASE_DATABASE_URL', 'FIREBASE_PROJECT_ID', 'FIREBASE_STORAGE_BUCKET', 'FIREBASE_MESSAGING_SENDER_ID'].map(name => ({[name]: process.env[name]})))
+  },
   modules: [
     ['@nuxtjs/dotenv', { filename: '.env' }],
     ['bootstrap-vue/nuxt', {css: false}],
