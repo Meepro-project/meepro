@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <b-form @submit.prevent="onSubmit">
+      <b-form-group label="名前" for="name" horizontal>
+        <b-form-input id="name" type="text" :value="name" plaintext readonly></b-form-input>
+      </b-form-group>
       <b-form-group label="職業" for="occupation" horizontal>
         <b-form-input id="occupation" v-model="occupation" type="text"></b-form-input>
       </b-form-group>
@@ -24,6 +27,11 @@ export default {
     return {
       occupation: '',
     };
+  },
+  computed: {
+    name() {
+      return this.$store.state.user.displayName;
+    },
   },
   methods: {
     onSubmit() {

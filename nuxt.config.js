@@ -51,5 +51,6 @@ module.exports = {
     'bootstrap/scss/bootstrap.scss',
     'bootstrap-social/bootstrap-social.css',
   ],
+  mode: 'spa',
 }
 

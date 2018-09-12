@@ -1,11 +1,12 @@
 import firebase from '~/utils/firebase.js';
-import 'firebase/auth';
+import {init} from '~/utils/firebase/auth.js';
 
-export default function ({store, redirect}) {
+export default async function ({store, redirect}) {
   if(process.server) {
     return;
   }
-  if(store.state.user === null) {
+  await store.dispatch('user/INIT_AUTH');
+  if(!store.getters['user/isLogin']) {
     redirect('/login');
   }
 };

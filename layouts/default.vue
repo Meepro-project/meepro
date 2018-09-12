@@ -62,12 +62,12 @@
 
 <script>
 import firebase from '~/utils/firebase.js';
-import {mixin as firebaseMixin} from '~/utils/firebase.js';
+import {auth} from '~/utils/firebase/auth.js';
+import {mapGetters} from 'vuex';
 
 import FacebookLoginButton from '~/components/FacebookLoginButton.vue'
 
 export default {
-  mixins: [firebaseMixin],
   components: {
     FacebookLoginButton,
   },
@@ -76,8 +76,7 @@ export default {
       this.$store.commit('setLang', lang);
     },
     async signOut() {
-      await firebase.auth().signOut();
-      this.$store.commit('authStatusChange');
+      await auth.signOut();
       this.$router.push('/');
     },
   },
@@ -85,6 +84,7 @@ export default {
     language() {
       return this.$store.state.lang;
     },
+    ...mapGetters('user', ['isLogin']),
   },
 };
 </script>
