@@ -21,7 +21,6 @@ export const actions = {
 
 export const plugins = [
   store => {
-    console.log(store);
     auth.onIdTokenChanged( u => {
       store.commit('user/setAuth', u);
     });
