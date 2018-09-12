@@ -3,31 +3,26 @@ import {db} from '~/utils/firebase/db.js';
 
 import {deepCopy} from '~/utils/utils.js';
 
-const defaultState = {
+const defaultState = () => deepCopy({
   auth: null,
   uid: '',
   displayName: '',
   photoURL: '',
   occupation: '',
-};
+});
 
-export const state = () => deepCopy(defaultState);
+export const state = () => defaultState();
 
 export const mutations = {
   setAuth(state, auth) {
-    if(!auth) auth = {};
-    ({
-      uid: state.uid = '',
-      displayName: state.displayName = '',
-      photoURL: state.photoURL = '',
-    } = auth);
-    state.auth = !!auth;
+    const {uid, displayName, photoURL} = Object.assign({}, defaultState(), auth);
+    Object.assign(state, {auth: !!auth, uid, displayName, photoURL});
   },
   setProfile(state, {occupation}) {
     Object.assign(state, {occupation});
   },
   reset(state) {
-    Object.assign(state, deepCopy(defaultState));
+    Object.assign(state, defaultState());
   },
 };
 

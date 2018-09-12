@@ -18,16 +18,14 @@
       <b-navbar-brand id="nav_brand" to="/">MEEPRO</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
-          <template :placeholder="isLogin" v-if="$route.path !== '/'">
-            <b-nav-item-dropdown right v-if="isLogin">
-              <template slot="button-content">&#x1F468;</template>
-              <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
-              <b-dropdown-item @click="signOut">ログアウト</b-dropdown-item>
-            </b-nav-item-dropdown>
-            <b-nav-item v-else>
-              <facebook-login-button/>
-            </b-nav-item>
-          </template>
+          <b-nav-item-dropdown right v-if="isLogin">
+            <template slot="button-content">&#x1F468;</template>
+            <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
+            <b-dropdown-item @click="signOut">ログアウト</b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-nav-item v-else-if="$route.path !== '/'">
+            <facebook-login-button/>
+          </b-nav-item>
         </b-navbar-nav>
 
       </b-collapse>

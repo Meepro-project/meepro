@@ -5,12 +5,12 @@
         <img id="photo" :src="photoURL" />
       </b-form-group>
       <b-form-group label="名前" for="name" horizontal>
-        <b-form-input id="name" type="text" :value="name" plaintext readonly></b-form-input>
+        <b-form-input id="name" type="text" :value="name" plaintext></b-form-input>
       </b-form-group>
       <b-form-group label="職業" for="occupation" horizontal>
-        <b-form-input id="occupation" v-model="occupation" type="text"></b-form-input>
+        <b-form-input id="occupation" v-model="occupation" @input.native="saved = false; changed = true" type="text"></b-form-input>
       </b-form-group>
-      <b-button type="submit" variant="success">Save</b-button>
+      <b-button type="submit" :variant="changed ? 'success' : saved ? 'outline-success' : 'secondary'">{{ saved ? 'Saved!' : 'Save' }}</b-button>
     </b-form>
   </div>
 </template>
@@ -24,6 +24,8 @@ export default {
   middleware: 'authenticated',
   data() {
     return {
+      saved: false,
+      changed: false,
       occupation: '',
     };
   },
@@ -40,12 +42,16 @@ export default {
     })
   },
   methods: {
-    onSubmit() {
-      this.$store.dispatch('user/UPDATE_PROFILE', {
-        photoURL: this.photoURL,
-        name: this.name,
-        occupation: this.occupation,
-      });
+    async onSubmit() {
+      if(this.changed) {
+        await this.$store.dispatch('user/UPDATE_PROFILE', {
+          photoURL: this.photoURL,
+          name: this.name,
+          occupation: this.occupation,
+        });
+        this.saved = true;
+      }
+      this.changed = false;
     },
   }
 };

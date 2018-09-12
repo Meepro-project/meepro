@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import firebase from '~/utils/firebase.js';
 import {init, auth} from '~/utils/firebase/auth.js';
 
-export const strict = true;
 export const state = () => ({
   lang: 'ja',
 });

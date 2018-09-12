@@ -8,19 +8,24 @@
           完全無料でオープンソースの<br>
           出会い系ではないマッチングサービスです。
         </p>
-        <facebook-login-button to="/profile" />
+        <facebook-login-button to="/profile" v-if="!isLogin" />
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex';
+
 import FacebookLoginButton from '~/components/FacebookLoginButton.vue';
 
 export default {
   components: {
     FacebookLoginButton,
-  }
+  },
+  computed: {
+    ...mapGetters('user', ['isLogin']),
+  },
 }
 </script>
 
