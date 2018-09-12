@@ -20,6 +20,7 @@ import {mapGetters} from 'vuex';
 import FacebookLoginButton from '~/components/FacebookLoginButton.vue';
 
 export default {
+  middleware: 'fetch-user',
   components: {
     FacebookLoginButton,
   },

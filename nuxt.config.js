@@ -36,6 +36,7 @@ module.exports = {
     }
   },
   modules: [
+    ['@nuxtjs/dotenv', { filename: '.env' }],
     ['bootstrap-vue/nuxt', {css: false}],
     ['nuxt-fontawesome', {
       component: 'fa',

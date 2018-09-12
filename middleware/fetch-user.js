@@ -4,5 +4,5 @@ export default async function ({store, redirect}) {
   if(process.server) {
     return;
   }
-  await store.dispatch('INIT_AUTH');
+  await store.dispatch('user/INIT_AUTH');
 };
