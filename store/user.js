@@ -7,6 +7,7 @@ const defaultState = {
   auth: null,
   uid: '',
   displayName: '',
+  photoURL: '',
   occupation: '',
 };
 
@@ -18,6 +19,7 @@ export const mutations = {
     ({
       uid: state.uid = '',
       displayName: state.displayName = '',
+      photoURL: state.photoURL = '',
     } = auth);
     state.auth = !!auth;
   },
@@ -48,10 +50,11 @@ export const actions = {
     commit('reset');
     commit('setAuth', auth.currentUser);
   },
-  async UPDATE_PROFILE({state, commit}, {occupation, name}) {
+  async UPDATE_PROFILE({state, commit}, {occupation, name, photoURL}) {
     await db.collection('users').doc(state.uid).set({
       occupation,
       name,
+      photoURL,
     });
     commit('setProfile', {occupation});
   }

@@ -1,6 +1,9 @@
 <template>
   <div class="container">
     <b-form @keyup.enter="onSubmit" @submit.prevent="onSubmit">
+      <b-form-group label="写真" for="photo" horizontal>
+        <img id="photo" :src="photoURL" />
+      </b-form-group>
       <b-form-group label="名前" for="name" horizontal>
         <b-form-input id="name" type="text" :value="name" plaintext readonly></b-form-input>
       </b-form-group>
@@ -32,12 +35,14 @@ export default {
   },
   computed: {
     ...mapState('user', {
+      photoURL: state => state.photoURL,
       name: state => state.displayName,
     })
   },
   methods: {
     onSubmit() {
       this.$store.dispatch('user/UPDATE_PROFILE', {
+        photoURL: this.photoURL,
         name: this.name,
         occupation: this.occupation,
       });
