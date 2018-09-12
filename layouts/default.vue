@@ -4,7 +4,8 @@
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown :text="language" right>
+          <b-nav-item-dropdown right no-caret>
+            <span id="current-language" slot="button-content">{{ language }}</span>
             <b-dropdown-item @click="setLang('ja')">Japanese</b-dropdown-item>
             <b-dropdown-item @click="setLang('en')">English</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -113,6 +114,10 @@ html {
 
 #topmost-nav {
   background-color: #053d01;
+
+  & #current-language {
+    color: white;
+  }
 }
 
 .body {
