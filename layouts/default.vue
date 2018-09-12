@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-navbar id="topmost-nav" toggleable type="dark" variant="dark">
+    <b-navbar id="topmost-nav" toggleable>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
@@ -15,7 +15,7 @@
 
     <b-navbar id="main-nav" toggleable type="light" variant="light">
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand to="/">MEEPRO</b-navbar-brand>
+      <b-navbar-brand id="nav_brand" to="/">MEEPRO</b-navbar-brand>
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav class="ml-auto">
           <template :placeholder="isLogin" v-if="$route.path !== '/'">
@@ -109,8 +109,16 @@ html {
 </style>
 
 <style scoped lang="scss">
+#nav_brand {
+  letter-spacing: 5px;
+}
+
+#topmost-nav {
+  background-color: #053d01;
+}
+
 .body {
-  background-color: #cfc;
+  background-color: #d5efb6;
 };
 
 .container {
@@ -121,9 +129,9 @@ html {
 footer {
   padding: 50px 200px;
 
-  background-color: #080;
+  background-color: #053d01;
 
-  color: #ccc;
+  color: #a5a8bb;
   display: flex;
   flex-direction: row;
 

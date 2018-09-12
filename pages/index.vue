@@ -3,7 +3,7 @@
     <section id="pane-hero">
       <div class="pane-hero-text">
         <h1>MEET PROFESSIONAL</h1>
-        <p>
+        <p class="describe">
           Meeproは話してみたい職業の人と会える、<br>
           完全無料でオープンソースの<br>
           出会い系ではないマッチングサービスです。
@@ -31,7 +31,11 @@ export default {
   }
 
   & h1 {
-    color: #33f;
+    color: #666ee8;
+  }
+
+  & .describe {
+    color: #6b6f81;
   }
 }
 </style>

@@ -10,13 +10,13 @@ const createStore = () => {
       databaseURL: "https://meepro-dev.firebaseio.com",
       projectId: "meepro-dev",
       storageBucket: "meepro-dev.appspot.com",
-      messagingSenderId: "1018513591875"
+      messagingSenderId: "1018513591875",
     });
   }
 
   const store = new Vuex.Store({
     state: {
-      user: firebase.auth().currentUser,
+      user: null,
       lang: 'ja',
     },
     mutations: {
