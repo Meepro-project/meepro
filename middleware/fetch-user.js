@@ -1,8 +1,8 @@
-import firebase from '~/utils/firebase.js';
+import firebase from "~/utils/firebase.js";
 
-export default async function ({store, redirect}) {
-  if(process.server) {
+export default async function({ store, redirect }) {
+  if (process.server) {
     return;
   }
-  await store.dispatch('user/INIT_AUTH');
-};
+  await store.dispatch("user/INIT_AUTH");
+}

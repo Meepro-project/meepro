@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import FacebookLoginButton from '~/components/FacebookLoginButton.vue';
+import FacebookLoginButton from "~/components/FacebookLoginButton.vue";
 
 export default {
   components: {
-    FacebookLoginButton,
-  },
+    FacebookLoginButton
+  }
 };
 </script>
 

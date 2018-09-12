@@ -1,11 +1,19 @@
 <template>
   <div>
-    <b-navbar id="topmost-nav" toggleable>
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-collapse is-nav id="nav_collapse">
+    <b-navbar
+      id="topmost-nav"
+      toggleable>
+      <b-navbar-toggle target="nav_collapse"/>
+      <b-collapse
+        id="nav_collapse"
+        is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right no-caret>
-            <span id="current-language" slot="button-content">{{ language }}</span>
+          <b-nav-item-dropdown
+            right
+            no-caret>
+            <span
+              id="current-language"
+              slot="button-content">{{ language }}</span>
             <b-dropdown-item @click="setLang('ja')">Japanese</b-dropdown-item>
             <b-dropdown-item @click="setLang('en')">English</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -14,12 +22,22 @@
       </b-collapse>
     </b-navbar>
 
-    <b-navbar id="main-nav" toggleable type="light" variant="light">
-      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-      <b-navbar-brand id="nav_brand" to="/">MEEPRO</b-navbar-brand>
-      <b-collapse is-nav id="nav_collapse">
+    <b-navbar
+      id="main-nav"
+      toggleable
+      type="light"
+      variant="light">
+      <b-navbar-toggle target="nav_collapse"/>
+      <b-navbar-brand
+        id="nav_brand"
+        to="/">MEEPRO</b-navbar-brand>
+      <b-collapse
+        id="nav_collapse"
+        is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown right v-if="isLogin">
+          <b-nav-item-dropdown
+            v-if="isLogin"
+            right>
             <template slot="button-content">&#x1F468;</template>
             <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
             <b-dropdown-item @click="signOut">ログアウト</b-dropdown-item>
@@ -60,37 +78,38 @@
 </template>
 
 <script>
-import firebase from '~/utils/firebase.js';
-import {auth} from '~/utils/firebase/auth.js';
-import {mapGetters} from 'vuex';
+import firebase from "~/utils/firebase.js";
+import { auth } from "~/utils/firebase/auth.js";
+import { mapGetters } from "vuex";
 
-import FacebookLoginButton from '~/components/FacebookLoginButton.vue'
+import FacebookLoginButton from "~/components/FacebookLoginButton.vue";
 
 export default {
   components: {
-    FacebookLoginButton,
-  },
-  methods: {
-    setLang(lang) {
-      this.$store.commit('setLang', lang);
-    },
-    async signOut() {
-      await auth.signOut();
-      this.$router.push('/');
-    },
+    FacebookLoginButton
   },
   computed: {
     language() {
       return this.$store.state.lang;
     },
-    ...mapGetters('user', ['isLogin']),
+    ...mapGetters("user", ["isLogin"])
   },
+  methods: {
+    setLang(lang) {
+      this.$store.commit("setLang", lang);
+    },
+    async signOut() {
+      await auth.signOut();
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 
 <style>
 html {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -100,11 +119,12 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   margin: 0;
 }
-
 </style>
 
 <style scoped lang="scss">
@@ -122,7 +142,7 @@ html {
 
 .body {
   background-color: #d5efb6;
-};
+}
 
 .container {
   width: 1600px;
@@ -158,4 +178,3 @@ footer {
   padding-right: 200px;
 }
 </style>
-

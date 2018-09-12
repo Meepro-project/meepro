@@ -1,28 +1,28 @@
-import Vuex from 'vuex'
+import Vuex from "vuex";
 
-import firebase from '~/utils/firebase.js';
-import {init, auth} from '~/utils/firebase/auth.js';
+import firebase from "~/utils/firebase.js";
+import { init, auth } from "~/utils/firebase/auth.js";
 
 export const state = () => ({
-  lang: 'ja',
+  lang: "ja"
 });
 
 export const mutations = {
-  setLang (state, lang) {
+  setLang(state, lang) {
     state.lang = lang;
-  },
+  }
 };
 
 export const actions = {
-  async CHANGE_USER({dispatch}) {
-    await dispatch('user/CHANGE_USER');
-  },
+  async CHANGE_USER({ dispatch }) {
+    await dispatch("user/CHANGE_USER");
+  }
 };
 
 export const plugins = [
   store => {
-    auth.onIdTokenChanged( u => {
-      store.commit('user/setAuth', u);
+    auth.onIdTokenChanged(u => {
+      store.commit("user/setAuth", u);
     });
-  },
+  }
 ];

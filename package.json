@@ -10,7 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "pretty-quick '**/*.js' '**/*.vue' --staged && npm run lint"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.3.1",
@@ -29,6 +29,9 @@
     "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
-    "eslint-plugin-vue": "^4.0.0"
+    "eslint-plugin-vue": "^4.0.0",
+    "husky": "^0.14.3",
+    "prettier": "1.14.2",
+    "pretty-quick": "^1.6.0"
   }
 }
