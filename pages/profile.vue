@@ -1,38 +1,38 @@
 <template>
   <div class="container">
-    <b-form 
-      @keyup.enter="onSubmit" 
+    <b-form
+      @keyup.enter="onSubmit"
       @submit.prevent="onSubmit">
-      <b-form-group 
-        label="写真" 
-        for="photo" 
+      <b-form-group
+        label="写真"
+        for="photo"
         horizontal>
-        <img 
-          id="photo" 
+        <img
+          id="photo"
           :src="photoURL" >
       </b-form-group>
-      <b-form-group 
-        label="名前" 
-        for="name" 
+      <b-form-group
+        label="名前"
+        for="name"
         horizontal>
-        <b-form-input 
-          id="name" 
-          :value="name" 
-          type="text" 
+        <b-form-input
+          id="name"
+          :value="name"
+          type="text"
           plaintext/>
       </b-form-group>
-      <b-form-group 
-        label="職業" 
-        for="occupation" 
+      <b-form-group
+        label="職業"
+        for="occupation"
         horizontal>
-        <b-form-input 
-          id="occupation" 
-          v-model="occupation" 
-          type="text" 
+        <b-form-input
+          id="occupation"
+          v-model="occupation"
+          type="text"
           @input.native="saved = false; changed = true"/>
       </b-form-group>
-      <b-button 
-        :variant="changed ? 'success' : saved ? 'outline-success' : 'secondary'" 
+      <b-button
+        :variant="changed ? 'success' : saved ? 'outline-success' : 'secondary'"
         type="submit">{{ saved ? 'Saved!' : 'Save' }}</b-button>
     </b-form>
   </div>
