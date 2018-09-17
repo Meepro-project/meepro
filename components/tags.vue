@@ -6,7 +6,7 @@
           <input
             v-model="newTag"
             class="form-control"
-            @keydown.enter.prevent="onAppend"
+            @keyup.enter.prevent="onAppend"
           >
           <b-input-group-append>
             <b-btn @click="onAppend">追加</b-btn>
