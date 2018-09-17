@@ -2,6 +2,7 @@
   <div class="container">
     <b-form
       @submit.prevent="onSubmit">
+
       <b-form-group
         label="写真"
         for="photo"
@@ -10,6 +11,7 @@
           id="photo"
           :src="photoURL" >
       </b-form-group>
+
       <b-form-group
         label="名前"
         for="name"
@@ -20,6 +22,7 @@
           type="text"
           plaintext/>
       </b-form-group>
+
       <b-form-group
         label="ポジション"
         for="position"
@@ -27,17 +30,34 @@
         <b-form-input
           id="position"
           v-model="position"
-          type="text"
+          required
           @keyup.enter="onSubmit"
-          @input.native="onChange()"/>
+          @input.native="onChange"
+        />
       </b-form-group>
+
+      <b-form-group
+        label="プロフェッション"
+        for="profession"
+        horizontal>
+        <b-form-select
+          id="profession"
+          v-model="profession"
+          :options="professionOptions"
+          required
+          @change="onChange"
+        />
+      </b-form-group>
+
       <b-form-group
         label="タグ"
         horizontal>
         <tags
           v-model="tags"
-          @input="tags = $event; onChange()"/>
+          @input="tags = $event; onChange()"
+        />
       </b-form-group>
+
       <b-form-group
         label="フリーコメント"
         for="comment"
@@ -45,20 +65,23 @@
         <b-form-textarea
           id="comment"
           v-model="comment"
-          placeholder=""
           rows="3"
-          @input.native="onChange()"/>
+          @input.native="onChange"
+        />
       </b-form-group>
-      <b-button
-        v-if="changed"
-        variant="success"
-        type="submit">Save</b-button>
-      <b-button
-        v-else-if="saved"
-        variant="outline-success">Saved!</b-button>
-      <b-button
-        v-else
-        variant="secondary">Save</b-button>
+
+      <template>
+        <b-button
+          v-if="changed"
+          variant="success"
+          type="submit">Save</b-button>
+        <b-button
+          v-else-if="saved"
+          variant="outline-success">Saved!</b-button>
+        <b-button
+          v-else
+          variant="secondary">Save</b-button>
+      </template>
     </b-form>
   </div>
 </template>
@@ -67,6 +90,7 @@
 import { mapState } from "vuex";
 
 import firebase from "~/utils/firebase.js";
+import professions from "~/utils/professions.js";
 
 import Tags from "~/components/tags.vue";
 
@@ -78,6 +102,7 @@ export default {
       saved: false,
       changed: false,
       position: "",
+      profession: null,
       comment: "",
       tags: []
     };
@@ -86,6 +111,7 @@ export default {
     await store.dispatch("user/FETCH_PROFILE");
     return {
       position: store.state.user.position,
+      profession: store.state.user.profession || null,
       tags: [].concat(store.state.user.tags),
       comment: store.state.user.comment
     };
@@ -93,8 +119,15 @@ export default {
   computed: {
     ...mapState("user", {
       photoURL: state => state.photoURL,
-      name: state => state.displayName
-    })
+      name: state => state.name
+    }),
+    professionOptions: () => [
+      { value: null, text: "-- 選択してください --" },
+      ...professions.map(profession => ({
+        value: profession,
+        text: profession
+      }))
+    ]
   },
   methods: {
     async onSubmit() {
@@ -103,6 +136,7 @@ export default {
           photoURL: this.photoURL,
           name: this.name,
           position: this.position,
+          profession: this.profession,
           tags: this.tags,
           comment: this.comment
         });

@@ -1,13 +1,22 @@
 import { init, auth } from "~/utils/firebase/auth.js";
 import { db } from "~/utils/firebase/db.js";
 
-import { deepCopy } from "~/utils/utils.js";
+import { deepCopy, filterKeys } from "~/utils/utils.js";
 
+const persistentFilter = filterKeys([
+  "name",
+  "photoURL",
+  "position",
+  "profession",
+  "tags",
+  "comment"
+]);
+const syncDBFilter = filterKeys(["position", "profession", "tags", "comment"]);
 const defaultState = () =>
   deepCopy({
     auth: null,
     uid: "",
-    displayName: "",
+    name: "",
     photoURL: "",
     position: "",
     tags: [],
@@ -21,12 +30,13 @@ export const mutations = {
     const { uid, displayName, photoURL } = Object.assign(
       {},
       defaultState(),
+      { displayName: "" },
       auth
     );
-    Object.assign(state, { auth: !!auth, uid, displayName, photoURL });
+    Object.assign(state, { auth: !!auth, uid, name: displayName, photoURL });
   },
-  setProfile(state, { position, tags, comment }) {
-    Object.assign(state, { position, tags, comment });
+  setProfile(state, profile) {
+    Object.assign(state, syncDBFilter(profile));
   },
   reset(state) {
     Object.assign(state, defaultState());
@@ -45,7 +55,7 @@ export const actions = {
       .collection("users")
       .doc(state.uid)
       .get();
-    let profile = { position: "", tags: [], comment: "" };
+    const profile = defaultState();
     if (doc.exists) {
       Object.assign(profile, doc.data());
     }
@@ -55,21 +65,12 @@ export const actions = {
     commit("reset");
     commit("setAuth", auth.currentUser);
   },
-  async UPDATE_PROFILE(
-    { state, commit },
-    { name, photoURL, position, tags, comment }
-  ) {
+  async UPDATE_PROFILE({ state, commit }, profile) {
     await db
       .collection("users")
       .doc(state.uid)
-      .set({
-        name,
-        photoURL,
-        position,
-        tags,
-        comment
-      });
-    commit("setProfile", { position, tags, comment });
+      .set(persistentFilter(profile));
+    commit("setProfile", profile);
   }
 };
 
