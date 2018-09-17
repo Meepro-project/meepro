@@ -7,3 +7,11 @@ export const filterKeys = keys => obj => {
   }
   return res;
 };
+
+function AssertionException(msg) {
+  this.message = msg;
+  this.name = "AssertionException";
+}
+export const assert = bool => {
+  if (!bool) throw new AssertionException(bool);
+};

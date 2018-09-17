@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { assert } from "~/utils/utils.js";
+
 export default {
   props: {
     readonly: { type: Boolean, default: false },
@@ -43,10 +45,10 @@ export default {
   methods: {
     onRemove(e) {
       const idx = Array.prototype.indexOf.call(
-        this.$el.querySelector(".tags-container"),
+        this.$el.querySelectorAll(".tags-container > .tag"),
         e.target
       );
-      console.log(idx);
+      assert(idx >= 0);
       this.localValue.splice(idx, 1);
       this.$emit("input", this.localValue);
     },
