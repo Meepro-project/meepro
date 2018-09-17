@@ -23,11 +23,11 @@
       </b-form-group>
       <b-form-group
         label="職業"
-        for="occupation"
+        for="profession"
         horizontal>
         <b-form-input
-          id="occupation"
-          v-model="occupation"
+          id="profession"
+          v-model="profession"
           type="text"
           @input.native="saved = false; changed = true"/>
       </b-form-group>
@@ -49,13 +49,13 @@ export default {
     return {
       saved: false,
       changed: false,
-      occupation: ""
+      profession: ""
     };
   },
   async asyncData({ store }) {
     await store.dispatch("user/FETCH_PROFILE");
     return {
-      occupation: store.state.user.occupation
+      profession: store.state.user.profession
     };
   },
   computed: {
@@ -70,7 +70,7 @@ export default {
         await this.$store.dispatch("user/UPDATE_PROFILE", {
           photoURL: this.photoURL,
           name: this.name,
-          occupation: this.occupation
+          profession: this.profession
         });
         this.saved = true;
       }
