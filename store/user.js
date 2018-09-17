@@ -9,7 +9,9 @@ const defaultState = () =>
     uid: "",
     displayName: "",
     photoURL: "",
-    profession: ""
+    position: "",
+    tags: [],
+    comment: ""
   });
 
 export const state = () => defaultState();
@@ -23,8 +25,8 @@ export const mutations = {
     );
     Object.assign(state, { auth: !!auth, uid, displayName, photoURL });
   },
-  setProfile(state, { profession }) {
-    Object.assign(state, { profession });
+  setProfile(state, { position, tags, comment }) {
+    Object.assign(state, { position, tags, comment });
   },
   reset(state) {
     Object.assign(state, defaultState());
@@ -43,7 +45,7 @@ export const actions = {
       .collection("users")
       .doc(state.uid)
       .get();
-    let profile = { profession: "" };
+    let profile = { position: "", tags: [], comment: "" };
     if (doc.exists) {
       Object.assign(profile, doc.data());
     }
@@ -53,16 +55,21 @@ export const actions = {
     commit("reset");
     commit("setAuth", auth.currentUser);
   },
-  async UPDATE_PROFILE({ state, commit }, { profession, name, photoURL }) {
+  async UPDATE_PROFILE(
+    { state, commit },
+    { name, photoURL, position, tags, comment }
+  ) {
     await db
       .collection("users")
       .doc(state.uid)
       .set({
-        profession,
         name,
-        photoURL
+        photoURL,
+        position,
+        tags,
+        comment
       });
-    commit("setProfile", { profession });
+    commit("setProfile", { position, tags, comment });
   }
 };
 
