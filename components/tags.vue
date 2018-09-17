@@ -1,20 +1,5 @@
 <template>
   <div>
-    <b-form-group v-if="!readonly" >
-      <div style="display: inline-block" >
-        <b-input-group>
-          <input
-            v-model="newTag"
-            class="form-control"
-            @keyup.enter.prevent="onAppend"
-          >
-          <b-input-group-append>
-            <b-btn @click="onAppend">追加</b-btn>
-          </b-input-group-append>
-        </b-input-group>
-      </div>
-      <b-form-valid-feedback />
-    </b-form-group>
     <div class="tags-container">
       <b-btn
         v-for="val in localValue"
@@ -25,6 +10,21 @@
         {{ val }}
       </b-btn>
     </div>
+    <b-form-group v-if="!readonly" >
+      <div style="display: inline-block" >
+        <b-input-group>
+          <input
+            v-model="newTag"
+            class="form-control"
+            @keyup.enter.prevent="onAppend"
+          >
+          <b-input-group-append>
+            <b-btn @click="onAppend">タグ追加</b-btn>
+          </b-input-group-append>
+        </b-input-group>
+      </div>
+      <b-form-valid-feedback />
+    </b-form-group>
   </div>
 </template>
 

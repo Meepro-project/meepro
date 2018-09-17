@@ -66,11 +66,12 @@ export const actions = {
     commit("setAuth", auth.currentUser);
   },
   async UPDATE_PROFILE({ state, commit }, profile) {
+    const _profile = deepCopy(profile);
     await db
       .collection("users")
       .doc(state.uid)
-      .set(persistentFilter(profile));
-    commit("setProfile", profile);
+      .set(persistentFilter(_profile));
+    commit("setProfile", _profile);
   }
 };
 
