@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="8px" viewBox="0 0 10 8" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pro-Search-Page" transform="translate(-545.000000, -246.000000)" fill="#A7ABBD" fill-rule="nonzero">
+            <g id="Search-Pro" transform="translate(215.000000, 199.000000)">
+                <g id="Categories" transform="translate(30.000000, 40.000000)">
+                    <g id="Head" transform="translate(2.000000, 0.000000)">
+                        <polygon id="Arrow" points="303 14.368879 298 8.81005548 299.296296 7.36887901 303 11.4865261 306.703704 7.36887901 308 8.81005548"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="265px" height="56px" viewBox="0 0 265 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Pro-Profile-Page" transform="translate(-1081.000000, -1292.000000)">
+            <g id="Button" transform="translate(1081.000000, 1292.000000)">
+                <polygon id="Btn.BG" fill="#666EE8" points="0 0 265 0 265 56 0 56"></polygon>
+                <text id="Btn.Name" font-family="AvenirNext-Regular, Avenir Next" font-size="13" font-weight="normal" line-spacing="16" fill="#FFFFFF">
+                    <tspan x="115" y="34">SAVE</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
