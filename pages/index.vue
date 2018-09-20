@@ -7,6 +7,10 @@
           Meeproは話してみたい職業の人と会える、<br>
           完全無料でオープンソースの<br>
           出会い系ではないマッチングサービスです。
+          <img
+            src="../static/kaisya_kaiwa_communication.png"
+            alt="header image"
+            align="top:right">
         </p>
         <facebook-login-button 
           v-if="!isLogin" 
@@ -40,7 +44,7 @@ export default {
 
 <style scoped lang="scss">
 #pane-hero {
-  & .pane-hero-text {
+  display:flex flex-direction:column & .pane-hero-text {
     width: 50%;
   }
 

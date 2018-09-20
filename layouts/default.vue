@@ -11,9 +11,6 @@
           <b-nav-item-dropdown
             right
             no-caret>
-            <span
-              id="current-language"
-              slot="button-content">{{ language }}</span>
             <b-dropdown-item @click="setLang('ja')">Japanese</b-dropdown-item>
             <b-dropdown-item @click="setLang('en')">English</b-dropdown-item>
           </b-nav-item-dropdown>
@@ -134,10 +131,6 @@ html {
 
 #topmost-nav {
   background-color: #053d01;
-
-  & #current-language {
-    color: white;
-  }
 }
 
 .body {
@@ -173,7 +166,7 @@ footer {
 }
 
 #main-nav {
-  height: 100px;
+  height: 70px;
   padding-left: 200px;
   padding-right: 200px;
 }
