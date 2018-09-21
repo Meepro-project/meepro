@@ -8,11 +8,21 @@
           完全無料でオープンソースの<br>
           出会い系ではないマッチングサービスです。
         </p>
-        <facebook-login-button 
-          v-if="!isLogin" 
+        <facebook-login-button
+          v-if="!isLogin"
           to="/profile" />
       </div>
+      <img
+        src="../static/kaisya_kaiwa_communication.png"
+        alt="header image"
+        align="top:right">
     </section>
+    <a href="https://github.com/Meepro-project/meepro">
+      <img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+        alt="Fork me on GitHub"></a>
+
   </div>
 </template>
 
@@ -34,11 +44,16 @@ export default {
 
 <style scoped lang="scss">
 #pane-hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
   & .pane-hero-text {
-    width: 50%;
+    margin: auto 0;
   }
 
   & h1 {
+    margin-bottom: 1em;
     color: #666ee8;
   }
 
