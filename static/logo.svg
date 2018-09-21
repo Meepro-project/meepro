@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="45px" viewBox="0 0 44 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Oval 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Page" transform="translate(-66.000000, -79.000000)">
+            <rect fill="#D5EFB6" x="0" y="0" width="1600" height="3301"></rect>
+            <g id="Header-24" fill="#FFFFFF">
+                <rect id="BG" x="0" y="47.5514019" width="1600" height="100.056075"></rect>
+            </g>
+            <ellipse id="Oval-2" fill="#038835" cx="88" cy="101.5" rx="22" ry="22.5"></ellipse>
+            <text id="M" font-family="LucidaGrande, Lucida Grande" font-size="40" font-weight="normal" fill="#FFFFFF">
+                <tspan x="75.2734375" y="118">M</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
