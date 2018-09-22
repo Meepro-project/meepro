@@ -28,23 +28,25 @@
       <b-navbar-brand
         id="nav_brand"
         to="/">MEEPRO</b-navbar-brand>
-      <b-collapse
-        id="nav_collapse"
-        is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown
-            v-if="isLogin"
-            right>
-            <template slot="button-content">&#x1F468;</template>
-            <b-dropdown-item to="/profile">プロフィール</b-dropdown-item>
-            <b-dropdown-item @click="signOut">ログアウト</b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-nav-item v-else-if="$route.path !== '/'">
-            <facebook-login-button/>
-          </b-nav-item>
-        </b-navbar-nav>
-
-      </b-collapse>
+      <b-naveach
+        id="naveach"
+        to="/profile">Profile</b-naveach>
+      <b-naveach
+        id="naveach"
+        to="/search">Search</b-naveach>
+      <b-naveach
+        id="naveach"
+        to="/requests">Requests</b-naveach>
+      <b-navlog
+        v-if="isLogin"
+        id="navlog"
+        @click="signOut">Logout</b-navlog>
+      <b-navlog
+        v-if="!isLogin"
+        id="navlog">Login</b-navlog>
+      <b-navlog
+        v-if="!isLogin"
+        id="navlog">Sign in</b-navlog>
     </b-navbar>
 
     <div class="body">
@@ -169,5 +171,14 @@ footer {
   height: 70px;
   padding-left: 200px;
   padding-right: 200px;
+}
+
+#naveach {
+  padding-right: 20px;
+  float: right;
+}
+#navlog {
+  padding-right: 20px;
+  float: right;
 }
 </style>
