@@ -25,9 +25,12 @@
       type="light"
       variant="light">
       <b-navbar-toggle target="nav_collapse"/>
+      <img
+        id="m-logo"
+        src="../static/logo.svg">
       <b-navbar-brand
         id="nav_brand"
-        to="/">MEEPRO</b-navbar-brand>
+        to="/">EEPRO</b-navbar-brand>
       <b-naveach
         id="naveach"
         to="/profile">Profile</b-naveach>
@@ -180,5 +183,8 @@ footer {
 #navlog {
   padding-right: 20px;
   float: right;
+}
+#m-logo {
+  padding-right: 3px;
 }
 </style>
