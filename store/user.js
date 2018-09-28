@@ -1,3 +1,4 @@
+import firebase from "~/utils/firebase.js";
 import { init, auth } from "~/utils/firebase/auth.js";
 import { db } from "~/utils/firebase/db.js";
 
@@ -44,6 +45,11 @@ export const mutations = {
 };
 
 export const actions = {
+  async LOGIN({ dispatch }) {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    await auth.signInWithPopup(provider);
+    await dispatch("CHANGE_USER");
+  },
   async INIT_AUTH({ dispatch }) {
     await init;
     await dispatch("CHANGE_USER");

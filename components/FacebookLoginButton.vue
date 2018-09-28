@@ -9,17 +9,12 @@
 </template>
 
 <script>
-import firebase from "~/utils/firebase.js";
-import { auth } from "~/utils/firebase/auth.js";
-
 export default {
   props: { to: { type: String, default: null } },
   methods: {
     facebookLogin() {
-      const provider = new firebase.auth.FacebookAuthProvider();
-
-      auth
-        .signInWithPopup(provider)
+      this.$store
+        .dispatch("user/LOGIN")
         .then(async _ => {
           await this.$store.dispatch("CHANGE_USER");
           if (this.to) {

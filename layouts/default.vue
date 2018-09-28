@@ -2,22 +2,7 @@
   <div>
     <b-navbar
       id="topmost-nav"
-      toggleable>
-      <b-navbar-toggle target="nav_collapse"/>
-      <b-collapse
-        id="nav_collapse"
-        is-nav>
-        <b-navbar-nav class="ml-auto">
-          <b-nav-item-dropdown
-            right
-            no-caret>
-            <b-dropdown-item @click="setLang('ja')">Japanese</b-dropdown-item>
-            <b-dropdown-item @click="setLang('en')">English</b-dropdown-item>
-          </b-nav-item-dropdown>
-        </b-navbar-nav>
-
-      </b-collapse>
-    </b-navbar>
+    />
 
     <b-navbar
       id="main-nav"
@@ -31,25 +16,33 @@
       <b-navbar-brand
         id="nav_brand"
         to="/">EEPRO</b-navbar-brand>
-      <b-naveach
-        id="naveach"
-        to="/profile">Profile</b-naveach>
-      <b-naveach
-        id="naveach"
-        to="/search">Search</b-naveach>
-      <b-naveach
-        id="naveach"
-        to="/requests">Requests</b-naveach>
-      <b-navlog
-        v-if="isLogin"
-        id="navlog"
-        @click="signOut">Logout</b-navlog>
-      <b-navlog
-        v-if="!isLogin"
-        id="navlog">Login</b-navlog>
-      <b-navlog
-        v-if="!isLogin"
-        id="navlog">Sign in</b-navlog>
+
+      <b-navbar-nav>
+        <b-nav-item
+          to="/profile">
+          Profile
+        </b-nav-item>
+        <b-nav-item
+          to="/search">
+          Search
+        </b-nav-item>
+        <b-nav-item
+          to="/requests">
+          Requests
+        </b-nav-item>
+
+        <b-nav-item
+          v-if="!isLogin"
+          @click="signIn"
+        >
+          Login
+        </b-nav-item>
+        <b-nav-item
+          v-else
+          @click="signOut">
+          Logout
+        </b-nav-item>
+      </b-navbar-nav>
     </b-navbar>
 
     <div class="body">
@@ -99,6 +92,9 @@ export default {
   methods: {
     setLang(lang) {
       this.$store.commit("setLang", lang);
+    },
+    async signIn() {
+      await this.$store.dispatch("user/LOGIN");
     },
     async signOut() {
       await auth.signOut();
@@ -175,14 +171,6 @@ footer {
   padding-right: 200px;
 }
 
-#naveach {
-  padding-right: 20px;
-  float: right;
-}
-#navlog {
-  padding-right: 20px;
-  float: right;
-}
 #m-logo {
   padding-right: 3px;
 }
