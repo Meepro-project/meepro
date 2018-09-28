@@ -53,8 +53,9 @@
         label="タグ"
         horizontal>
         <tags
-          v-model="tags"
-          @input="tags = $event; onChange()"
+          :value = "tags"
+          @click="onTagClick($event); onChange()"
+          @input="onTagAppend($event); onChange()"
         />
       </b-form-group>
 
@@ -147,6 +148,12 @@ export default {
     async onChange() {
       this.saved = false;
       this.changed = true;
+    },
+    async onTagAppend(newTag) {
+      this.tags.push(newTag);
+    },
+    async onTagClick(tag) {
+      this.tags = this.tags.filter(e => e !== tag);
     }
   }
 };
@@ -154,7 +161,7 @@ export default {
 
 <style scoped lang="scss">
 .container {
-  padding: 30px;
+  padding: 50px;
   background-color: #ffffff;
   box-shadow: 0 2px 6px 0 rgba(69, 73, 91, 0.08);
 }

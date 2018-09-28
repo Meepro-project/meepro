@@ -1,14 +1,13 @@
 <template>
   <div>
     <div class="tags-container">
-      <b-btn
-        v-for="val in localValue"
+      <b-badge
+        v-for="val in value"
         :key="val"
         class="tag"
-        variant="outline-danger"
-        @click="onRemove">
+        @click="onClick">
         {{ val }}
-      </b-btn>
+      </b-badge>
     </div>
     <b-form-group v-if="!readonly" >
       <div style="display: inline-block" >
@@ -16,7 +15,8 @@
           <input
             v-model="newTag"
             class="form-control"
-            @keyup.enter.prevent="onAppend"
+            @input.prevent
+            @keydown.enter.prevent="onAppend"
           >
           <b-input-group-append>
             <b-btn @click="onAppend">タグ追加</b-btn>
@@ -38,25 +38,18 @@ export default {
   },
   data() {
     return {
-      newTag: "",
-      localValue: this.value
+      newTag: ""
     };
   },
   methods: {
-    onRemove(e) {
-      const idx = Array.prototype.indexOf.call(
-        this.$el.querySelectorAll(".tags-container > .tag"),
-        e.target
-      );
-      assert(idx >= 0);
-      this.localValue.splice(idx, 1);
-      this.$emit("input", this.localValue);
+    onClick(e) {
+      const tag = e.target.textContent.trim();
+      this.$emit("click", tag);
     },
     onAppend() {
-      if (this.newTag && !this.localValue.includes(this.newTag))
-        this.localValue.push(this.newTag);
+      const newTag = this.newTag.trim();
+      if (newTag && !this.value.includes(newTag)) this.$emit("input", newTag);
       this.newTag = "";
-      this.$emit("input", this.localValue);
     }
   }
 };
@@ -64,8 +57,6 @@ export default {
 
 <style scoped>
 .tag {
-  margin-right: 5px;
-  margin-bottom: 5px;
-  min-width: 50px;
+  margin-right: 3px;
 }
 </style>

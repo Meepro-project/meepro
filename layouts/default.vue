@@ -53,7 +53,7 @@
     </b-navbar>
 
     <div class="body">
-      <div class="container">
+      <div class="body-container">
         <nuxt/>
       </div>
     </div>
@@ -140,11 +140,10 @@ html {
 
 .body {
   background-color: #d5efb6;
-}
 
-.container {
-  width: 1600px;
-  padding: 30px;
+  & .body-container {
+    padding: 30px 0;
+  }
 }
 
 footer {
