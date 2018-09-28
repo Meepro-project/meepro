@@ -17,11 +17,25 @@
         alt="header image"
         align="top:right">
     </section>
+
+    <section id="pane-2nd">
+      <div>
+        <img src="/User.svg" >
+      </div>
+      <div>
+        <img src="/User.svg" >
+      </div>
+      <div>
+        <img src="/User.svg" >
+      </div>
+    </section>
+
     <a href="https://github.com/Meepro-project/meepro">
       <img
         style="position: absolute; top: 0; right: 0; border: 0;"
         src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
-        alt="Fork me on GitHub"></a>
+        alt="Fork me on GitHub">
+    </a>
 
   </div>
 </template>
@@ -59,6 +73,20 @@ export default {
 
   & .describe {
     color: #6b6f81;
+  }
+}
+
+#pane-2nd {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: wrap;
+  text-align: center;
+
+  & > * {
+    max-width: 100%;
   }
 }
 </style>
