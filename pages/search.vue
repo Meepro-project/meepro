@@ -21,18 +21,6 @@
               />
             </b-collapse>
           </b-list-group-item>
-
-          <b-list-group-item>
-            <div
-              class="collapse-header"
-              @click="searchByComment = !searchByComment">SEARCH PRO BY COMMENT</div>
-            <b-collapse
-              id="search-by-comment"
-              :visible="searchByComment"
-            >
-              TODO
-            </b-collapse>
-          </b-list-group-item>
         </b-list-group>
 
         <b-btn
@@ -49,29 +37,42 @@
         tag="article"
         class="result-card"
       >
-        <img :src="result.data.photoURL">
-        <p class="name">{{ result.data.name }}</p>
-        <tags 
-          :value="result.data.tags" 
-          readonly/>
+        <img
+          :src="result.data.photoURL"
+          class="photo">
+        <div class="name">{{ result.data.name }}</div>
+        <div class="profession">{{ result.data.profession }}</div>
+        <tags
+          :value="result.data.tags"
+          class="tags"
+          readonly
+        />
+        <div class="comment">
+          {{ result.data.comment }}
+        </div>
       </b-card>
     </div>
-</div></template>
 
-  <script>
+    <UserModal/>
+  </div>
+</template>
+
+<script>
 import { mapState } from "vuex";
 
-import professions from "~/utils/professions.js";
 import firebase from "~/utils/firebase.js";
-import Tags from "~/components/tags.vue";
 import { db } from "~/utils/firebase/db.js";
+
+import professions from "~/utils/professions.js";
+import Tags from "~/components/tags.vue";
+import UserModal from "~/components/user-modal.vue";
 
 export default {
   middleware: "authenticated",
-  components: { Tags },
+  components: { Tags, UserModal },
   data() {
     return {
-      searchByProfession: false,
+      searchByProfession: true,
       searchByComment: false,
       profession: null,
       results: []
@@ -97,28 +98,19 @@ export default {
     ]
   },
   methods: {
-    async onSubmit() {
-      if (this.changed) {
-        await this.$store.dispatch("user/UPDATE_PROFILE", {
-          photoURL: this.photoURL,
-          name: this.name,
-          position: this.position
-        });
-        this.saved = true;
-      }
-      this.changed = false;
-    },
     async onSearch() {
-      // this.results = []; // TODO
-      db.collection("users")
+      const results = [];
+      await db
+        .collection("users")
         .where("profession", "==", this.profession)
         .limit(10)
         .get()
         .then(snapshot =>
           snapshot.forEach(doc => {
-            this.results.push({ id: doc.id, data: doc.data() });
+            results.push({ id: doc.id, data: doc.data() });
           })
         );
+      this.results = results;
     }
   }
 };
@@ -130,26 +122,44 @@ export default {
   flex-direction: row;
 }
 
+.query-composer {
+  width: 350px;
+  margin: 0 30px 0 0;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 2px 6px 0 rgba(69, 73, 91, 0.08);
+}
+
 .result-status {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-}
 
-.query-composer {
-  width: 350px;
-  margin: 0 30px 0 0;
-  padding: 30px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px 0 rgba(69, 73, 91, 0.08);
-}
+  & .result-card {
+    width: 240px;
 
-.result-card {
-  width: 200px;
+    & .photo {
+      display: block;
+      margin: 15px auto;
+    }
 
-  & .name {
-    margin: auto;
+    & .name {
+      text-align: center;
+    }
+    & .profession {
+      text-align: center;
+    }
+    & .tags {
+      line-height: 1.6;
+      height: 3.2em;
+      overflow: hidden;
+    }
+    & .comment {
+      line-height: 1.6;
+      height: 4.8em;
+      overflow: hidden;
+    }
   }
 }
 
