@@ -18,6 +18,7 @@
                 v-model="profession"
                 :options="professionOptions"
                 required
+                @input="onSearch"
               />
             </b-collapse>
           </b-list-group-item>
