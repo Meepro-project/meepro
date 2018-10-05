@@ -52,10 +52,19 @@
         <div class="comment">
           {{ result.data.comment }}
         </div>
+        <b-btn
+          class="more-bar"
+          variant="primary"
+          @click="showUser(result.id)">more
+        </b-btn>
       </b-card>
     </div>
 
-    <UserModal/>
+    <UserModal
+      v-if="modalData.user"
+      v-model="modalData.open"
+      :id="modalData.user.id"
+      v-bind="modalData.user.data"/>
   </div>
 </template>
 
@@ -77,6 +86,10 @@ export default {
       searchByProfession: true,
       searchByComment: false,
       profession: null,
+      modalData: {
+        open: false,
+        user: null
+      },
       results: []
     };
   },
@@ -113,6 +126,12 @@ export default {
           })
         );
       this.results = results;
+    },
+    async showUser(id) {
+      const user = this.results.find(u => u.id == id);
+      if (!user) return;
+      this.modalData.user = user;
+      this.modalData.open = true;
     }
   }
 };
@@ -160,6 +179,10 @@ export default {
       line-height: 1.6;
       height: 4.8em;
       overflow: hidden;
+    }
+
+    & .more-bar {
+      width: 100%;
     }
   }
 }
