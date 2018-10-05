@@ -142,6 +142,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .query-composer {
@@ -151,6 +152,9 @@ export default {
 }
 
 .result-status {
+  min-width: 240px;
+  flex: 1;
+
   display: flex;
   flex-direction: row;
   justify-content: space-around;
