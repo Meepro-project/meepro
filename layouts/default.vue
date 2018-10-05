@@ -12,7 +12,8 @@
       <b-navbar-toggle target="nav_collapse"/>
       <img
         id="m-logo"
-        src="../static/logo.svg">
+        src="../static/logo.svg" 
+        alt="M">
       <b-navbar-brand
         id="nav_brand"
         to="/">EEPRO</b-navbar-brand>
