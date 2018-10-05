@@ -1,6 +1,8 @@
 <template>
   <div>
-    <section id="pane-hero">
+    <section
+      id="pane-hero"
+      class="pane">
       <div class="pane-hero-text">
         <h1>MEET PROFESSIONAL</h1>
         <p class="describe">
@@ -18,44 +20,59 @@
         align="top:right">
     </section>
 
-    <section id="pane-2nd">
-      <h1> What is Meepro? </h1>
-      <div>
-        <img src="/Share-2.svg"> <br>
-        Open Source <br>
-        ソースコードをgithubで公開しています。
-      </div>
-      <div>
-        <img src="/Dollar_bag.svg"> <br>
-        Totally Free <br>
-        課金という発想がありません。
-      </div>
-      <div>
-        <img src="/Locked.svg" > <br>
-        Secure <br>
-        FacebookとのO-Authを利用しているため<br>
-        最小限の個人情報しか管理していません。
+    <section
+      id="pane-2nd"
+      class="pane">
+      <h1>What is Meepro?</h1>
+
+      <div class="flex">
+        <div>
+          <img src="/Share-2.svg"> <br>
+          Open Source <br>
+          ソースコードをgithubで公開しています。
+        </div>
+        <div>
+          <img src="/Dollar_bag.svg"> <br>
+          Totally Free <br>
+          課金という発想がありません。
+        </div>
+        <div>
+          <img src="/Locked.svg" > <br>
+          Secure <br>
+          FacebookとのO-Authを利用しているため<br>
+          最小限の個人情報しか管理していません。
+        </div>
       </div>
     </section>
 
-    <section id="pane-3rd">
-      <h1> こんな人々が使っています </h1>
-      <div>
-        Hanyuさん<br>
-        ミープロはとってもいいですね！
+    <section
+      id="pane-3rd"
+      class="pane">
+      <h1>こんな人々が使っています</h1>
+
+      <div class="flex">
+        <div>
+          Hanyuさん<br>
+          ミープロはとってもいいですね！
+        </div>
       </div>
     </section>
 
-    <section id="pane-4th">
+    <section
+      id="pane-4th"
+      class="pane">
       <h1> HOW TO USE MEEPRO </h1>
-      <div>
-        興味のある人を検索
-      </div>
-      <div>
-        メッセージの招待ボタンを押す
-      </div>
-      <div>
-        相手が承認してくれたらメッセージを始めよう！
+
+      <div class="flex">
+        <div>
+          興味のある人を検索
+        </div>
+        <div>
+          メッセージの招待ボタンを押す
+        </div>
+        <div>
+          相手が承認してくれたらメッセージを始めよう！
+        </div>
       </div>
     </section>
 
@@ -105,48 +122,30 @@ export default {
   }
 }
 
-#pane-2nd {
-  height: 300px;
-  padding: 100px 50px;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-wrap: wrap;
+.pane {
+  padding: 50px 50px;
   text-align: center;
+}
 
-  & > * {
-    max-width: 100%;
-  }
+#pane-2nd {
+  background-color: white;
 }
 
 #pane-3rd {
-  height: 300px;
-  padding: 100px 50px;
   background-color: #d5efb6;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  flex-wrap: wrap;
-  text-align: center;
-
-  & > * {
-    max-width: 100%;
-  }
 }
 
 #pane-4th {
-  height: 300px;
-  padding: 100px 50px;
   background-color: white;
+}
+
+.flex {
+  padding: 50px 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
   flex-wrap: wrap;
-  text-align: center;
 
   & > * {
     max-width: 100%;
