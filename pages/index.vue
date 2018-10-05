@@ -2,7 +2,7 @@
   <div>
     <section
       id="pane-hero"
-      class="pane">
+      class="pane flex">
       <div class="pane-hero-text">
         <h1>MEET PROFESSIONAL</h1>
         <p class="describe">
@@ -14,10 +14,13 @@
           v-if="!isLogin"
           to="/profile" />
       </div>
-      <img
-        src="../static/kaisya_kaiwa_communication.png"
-        alt="header image"
-        align="top:right">
+      <div>
+        <img
+          src="../static/kaisya_kaiwa_communication.png"
+          style="width:100%; height:100%;"
+          alt="header image"
+          align="top:right">
+      </div>
     </section>
 
     <section

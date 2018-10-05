@@ -10,40 +10,46 @@
       type="light"
       variant="light">
       <b-navbar-toggle target="nav_collapse"/>
-      <img
-        id="m-logo"
-        src="../static/logo.svg" 
-        alt="M">
+
       <b-navbar-brand
         id="nav_brand"
-        to="/">EEPRO</b-navbar-brand>
+        to="/">
+        <img
+          id="m-logo"
+          src="../static/logo.svg"
+          alt="M">EEPRO
+      </b-navbar-brand>
 
-      <b-navbar-nav>
-        <b-nav-item
-          to="/profile">
-          Profile
-        </b-nav-item>
-        <b-nav-item
-          to="/search">
-          Search
-        </b-nav-item>
-        <b-nav-item
-          to="/requests">
-          Requests
-        </b-nav-item>
+      <b-collapse
+        id="nav_collapse"
+        is-nav>
+        <b-navbar-nav>
+          <b-nav-item
+            to="/profile">
+            Profile
+          </b-nav-item>
+          <b-nav-item
+            to="/search">
+            Search
+          </b-nav-item>
+          <b-nav-item
+            to="/requests">
+            Requests
+          </b-nav-item>
 
-        <b-nav-item
-          v-if="!isLogin"
-          @click="signIn"
-        >
-          Login
-        </b-nav-item>
-        <b-nav-item
-          v-else
-          @click="signOut">
-          Logout
-        </b-nav-item>
-      </b-navbar-nav>
+          <b-nav-item
+            v-if="!isLogin"
+            @click="signIn"
+          >
+            Login
+          </b-nav-item>
+          <b-nav-item
+            v-else
+            @click="signOut">
+            Logout
+          </b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
     </b-navbar>
 
     <div class="body">
@@ -52,22 +58,24 @@
       </div>
     </div>
 
-    <footer>
-      <div class="footer-brand">
-        MEEPRO
-      </div>
-      <div class="footer-column">
-        <div class="footer-column-title">ABOUT</div>
-        <ul>
-          <li>hoge</li>
-          <li>fuga</li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <div class="footer-column-title">RESOURCES</div>
-        <ul>
-          <li><s>Twitter</s></li>
-        </ul>
+    <footer class="footer">
+      <div class="brand">MEEPRO</div>
+
+      <div class="footer-body">
+        <div class="footer-column">
+          <div class="footer-navitem-title">ABOUT</div>
+          <ul>
+            <li>hoge</li>
+            <li>fuga</li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <div class="footer-navitem-title">RESOURCES</div>
+          <ul>
+            <li>Twitter</li>
+          </ul>
+        </div>
       </div>
     </footer>
   </div>
@@ -135,6 +143,10 @@ html {
   background-color: #053d01;
 }
 
+#m-logo {
+  padding-right: 3px;
+}
+
 .body {
   background-color: #d5efb6;
 
@@ -143,36 +155,29 @@ html {
   }
 }
 
-footer {
-  padding: 50px 200px;
-
+.footer {
+  padding: 20px;
   background-color: #053d01;
-
   color: #a5a8bb;
-  display: flex;
-  flex-direction: row;
 
-  & .footer-brand {
+  & .brand {
     color: #fff;
   }
 
-  & .footer-column {
-    padding: 10px 50px;
-    width: 200px;
+  & ul {
+    list-style-type: none;
+  }
 
-    & ul {
-      list-style-type: none;
+  & .footer-body {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: stretch;
+    flex-wrap: wrap;
+
+    & .footer-column {
+      padding: 10px;
     }
   }
-}
-
-#main-nav {
-  height: 70px;
-  padding-left: 200px;
-  padding-right: 200px;
-}
-
-#m-logo {
-  padding-right: 3px;
 }
 </style>

@@ -27,8 +27,9 @@
           variant="success"
           @click="onSearch">Search</b-btn>
       </div>
-
     </div>
+
+    <div style="width:5px"/>
 
     <div class="result-status">
       <b-card
@@ -120,12 +121,11 @@ export default {
 .container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .query-composer {
-  width: 350px;
-  margin: 0 30px 0 0;
-  padding: 20px;
+  padding: 10px 50px;
   background-color: white;
   box-shadow: 0 2px 6px 0 rgba(69, 73, 91, 0.08);
 }
